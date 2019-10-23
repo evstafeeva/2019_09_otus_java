@@ -32,41 +32,53 @@ VM options:
 
 ### Serial Garbage Collector
 GC name: Copy (young generation) 
+
 GC name: MarkSweepCompact (old generation) 
+
  GC name | Sum pause, ms | Max pause, ms | Count 
- ------ | ------ | ------ | ------ 
- Copy | 181 | 79 | 6 
+ --- | --- | --- | --- 
+ Copy | 181 | 79 | 6  
  MarkSweepCompact | 28 719 | 318 | 38 
+ 
 Приложение работало: 4 min 44 sec, после чего было выброшено исключение OutOfMemoryError.
 
 
 ### Parallel Garbage Collector
-GC name: Scavenge (young generation) 
+GC name: Scavenge (young generation)
+
 GC name: MarkSweep (old generation) 
+ 
  GC name | Sum pause, ms | Max pause, ms | Count 
  ------ | ------ | ------ | ------ 
  Scavenge | 152 | 61 | 4 
  MarkSweep | 1 196 | 151 | 13 
+
 Приложение работало: 4 min 17 sec, после чего было выброшено исключение OutOfMemoryError.
 
 ### CMS (Concurrent Mark Sweep) Garbage Collector
 GC name: ParNew (young generation) 
+
 GC name: ConcurrentMarkSweep (old generation) 
- GC name | Sum pause, ms | Max pause, ms | Count 
+
+GC name | Sum pause, ms | Max pause, ms | Count 
  ------ | ------ | ------ | ------ 
  ParNew | 247 | 61 | 14 
  ConcurrentMarkSweep | 64 289 | 5 158 | 77 
+
 Приложение работало: 4 min 41 sec, после чего было выброшено исключение OutOfMemoryError.
 В данном GC ParNew делает stop the world, в то время как ConcurrentMarkSweep работает одновременно с приложением.
 Но данный GC считается устаревшим. 
 
 ### G1 (Garbage First) Garbage Collector
 GC name: G1 Young Generation
+
 GC name: G1 Old Generation
- GC name | Sum pause, ms | Max pause, ms | Count 
+
+GC name | Sum pause, ms | Max pause, ms | Count 
  ------ | ------ | ------ | ------ 
  G1 Young Generatio | 400 | 26 | 42 
  G1 Old Generation | 1 599 | 162 | 11 
+
 Приложение работало: 4 min 44 sec, после чего было выброшено исключение OutOfMemoryError.
 
 ### Выводы
