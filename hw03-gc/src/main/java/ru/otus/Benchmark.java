@@ -8,7 +8,7 @@ public class Benchmark implements BenchmarkMBean{
 
     private int size = 0;
     private int loop = 10;
-    List<Integer []> list = new LinkedList<>();
+    public List<Integer []> list = new LinkedList<>();
 
     void run() throws InterruptedException {
         while (true){
@@ -20,8 +20,7 @@ public class Benchmark implements BenchmarkMBean{
                 list.remove(0);
                 list.remove(0);
             }
-            Thread.sleep(20);
-            System.out.println("сделал");
+            Thread.sleep(23);
         }
     }
 

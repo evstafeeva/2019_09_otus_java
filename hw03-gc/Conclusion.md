@@ -21,6 +21,9 @@
 Тестировать сборщики мусора будем на примитивной программе: 
 Создадим список, в который будем добавлять четыре элемента - массива типа Integer на 500 элементов и удалять два элемента. Таким образом создавая мусор. 
 
+Программа каждую минуту выводит в лог количество сборок каждого типа и время, которое ушло на сборки.
+По окончанию работы, а именно при OOM, в лог выводится общая статика и время работы программы.
+
 VM options:
 ```
 -Xms512m 
@@ -35,12 +38,12 @@ GC name: Copy (young generation)
 
 GC name: MarkSweepCompact (old generation) 
 
- GC name | Sum pause, ms | Max pause, ms | Count 
- --- | --- | --- | --- 
- Copy | 181 | 79 | 6  
- MarkSweepCompact | 28 719 | 318 | 38 
+ GC name | Sum pause, ms | Count 
+ --- | --- | --- 
+ Copy | 447 | 5  
+ MarkSweepCompact | 21 849 | 40 
  
-Приложение работало: 4 min 44 sec, после чего было выброшено исключение OutOfMemoryError.
+Приложение работало: 5 min 25 sec, после чего было выброшено исключение OutOfMemoryError.
 
 
 ### Parallel Garbage Collector
@@ -48,24 +51,24 @@ GC name: Scavenge (young generation)
 
 GC name: MarkSweep (old generation) 
  
- GC name | Sum pause, ms | Max pause, ms | Count 
- ------ | ------ | ------ | ------ 
- Scavenge | 152 | 61 | 4 
- MarkSweep | 1 196 | 151 | 13 
+ GC name | Sum pause, ms | Count 
+ ------ | ------ | ------ 
+ Scavenge | 213 | 4 
+ MarkSweep | 11 002 | 48 
 
-Приложение работало: 4 min 17 sec, после чего было выброшено исключение OutOfMemoryError.
+Приложение работало: 4 min 58 sec, после чего было выброшено исключение OutOfMemoryError.
 
 ### CMS (Concurrent Mark Sweep) Garbage Collector
 GC name: ParNew (young generation) 
 
 GC name: ConcurrentMarkSweep (old generation) 
 
-GC name | Sum pause, ms | Max pause, ms | Count 
- ------ | ------ | ------ | ------ 
- ParNew | 247 | 61 | 14 
- ConcurrentMarkSweep | 64 289 | 5 158 | 77 
+GC name | Sum pause, ms | Count 
+ ------ | ------ | ------ 
+ ParNew | 467 | 14 
+ ConcurrentMarkSweep | 87 396 | 90 
 
-Приложение работало: 4 min 41 sec, после чего было выброшено исключение OutOfMemoryError.
+Приложение работало: 5 min 22 sec, после чего было выброшено исключение OutOfMemoryError.
 В данном GC ParNew делает stop the world, в то время как ConcurrentMarkSweep работает одновременно с приложением.
 Но данный GC считается устаревшим. 
 
@@ -74,12 +77,12 @@ GC name: G1 Young Generation
 
 GC name: G1 Old Generation
 
-GC name | Sum pause, ms | Max pause, ms | Count 
- ------ | ------ | ------ | ------ 
- G1 Young Generatio | 400 | 26 | 42 
- G1 Old Generation | 1 599 | 162 | 11 
+GC name | Sum pause, ms | Count 
+ ------ | ------ | ------ 
+ G1 Young Generation | 695 | 46 
+ G1 Old Generation | 4 136 | 20 
 
-Приложение работало: 4 min 44 sec, после чего было выброшено исключение OutOfMemoryError.
+Приложение работало: 5 min 18 sec, после чего было выброшено исключение OutOfMemoryError.
 
 ### Выводы
 1. Serial Garbage Collector работает в один поток и делает STW 28 900ms, что является максимальным из всех рассматриваемых Garbage Collector-ов. 
