@@ -3,52 +3,54 @@ package ru.otus.testFramework;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-public class TestCombination {
+class TestCombination {
     private ArrayList<Method> beforeMethods = new ArrayList<Method>();
     private Method testMethod;
     private ArrayList<Method> afterMethods = new ArrayList<Method>();
-    private boolean successful = true;
-    private Exception e = null;
+    private Boolean successful = true;
+    private List<Exception> e = new ArrayList<Exception>();
 
-    public TestCombination(ArrayList<Method> beforeMethods, Method testMethod, ArrayList<Method> afterMethods){
-        this.beforeMethods = beforeMethods;
+    TestCombination(TestClass testClass, Method testMethod) {
+        this.beforeMethods = testClass.getBeforeMethods();
         this.testMethod = testMethod;
-        this.afterMethods = afterMethods;
+        this.afterMethods = testClass.getAfterMethods();
     }
 
-    public void startTest(Object instance) throws Exception{
-        for(Method beforeMethod : beforeMethods){
-            beforeMethod.invoke(instance);
-        }
+    void startTest(Object instance) throws Exception {
         try {
+            for (Method beforeMethod : beforeMethods) {
+                beforeMethod.invoke(instance);
+            }
             testMethod.invoke(instance);
-        }catch(Exception e){
-            this.e = e;
+        } catch (Exception e) {
+            this.e.add(e);
             successful = false;
-        }
-        for(Method afterMethod : afterMethods){
-            afterMethod.invoke(instance);
-        }
-    }
-
-    public void statistic(){
-        System.out.print("Test: "+ testMethod.getName());
-        if(successful == true){
-            System.out.print(" PASSED\n");
-        }
-        else{
-            System.out.print(" FAILED with exception: " + e.getCause() + "\n");
+        } finally {
+            for (Method afterMethod : afterMethods) {
+                try {
+                    afterMethod.invoke(instance);
+                } catch (Exception e) {
+                    this.e.add(e);
+                    successful = false;
+                }
+            }
         }
     }
 
-    public boolean getSuccessful(){
-        return successful;
+    void statistic() {
+        System.out.print("Test: " + testMethod.getName());
+        System.out.print(successful ? " PASSED\n" : " FAILED with exception: \n");
+        e.forEach((e) -> System.out.println("    "+e.getCause() + "; "));
+    }
+
+    void addException(Exception exception){
+        this.e.add(exception);
     }
 
 }
