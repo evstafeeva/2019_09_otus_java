@@ -1,21 +1,38 @@
 package ru.otus;
 
-import ru.otus.atm.*;
 
-import java.util.List;
+import ru.otus.atm.*;
+import ru.otus.atm.exceptions.IllegalAmountException;
+import ru.otus.atm.exceptions.ImpossibleAmountException;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IllegalDenominationException, IllegalCountException, IllegalAmountException, ImpossibleAmountException {
-        ATM atm = new ATM();
+    public static void main(String[] args) throws IllegalAmountException, ImpossibleAmountException {
+        ATM atm = new ATMImpl();
 
-        atm.putMoney(500, 5);
-        atm.putMoney(10, 12);
-        atm.putMoney(1000, 3);
+        atm.putMoney(Arrays.asList(
+                Denominations.THOUSAND_RUBLES,
+                Denominations.THOUSAND_RUBLES,
+                Denominations.THOUSAND_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.TEN_RUBLES,
+                Denominations.FIVE_HUNDRED_RUBLES,
+                Denominations.FIVE_HUNDRED_RUBLES,
+                Denominations.FIVE_HUNDRED_RUBLES,
+                Denominations.FIVE_HUNDRED_RUBLES,
+                Denominations.FIVE_HUNDRED_RUBLES));
 
         System.out.println(atm.getBalance());
-
-        List<Bundle> myMoney = atm.getMoney(1610);
-        System.out.println(myMoney);
-        System.out.println(atm.getBalance());
+        System.out.println(atm.getMoney(1510));
     }
 }
