@@ -8,7 +8,7 @@ public class ClassTest {
     }
     @BeforeAll
     public static void method2() throws Exception {
-        throw new Exception("ОШИБКА");
+        //throw new Exception("ОШИБКА");
     }
     @Before
     public void method3(){
