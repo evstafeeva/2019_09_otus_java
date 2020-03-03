@@ -3,8 +3,6 @@ package ru.otus.atm;
 import ru.otus.atm.cell.Cell;
 import ru.otus.atm.cell.CellImpl;
 import ru.otus.atm.cell.Denominations;
-import ru.otus.atm.exceptions.IllegalAmountException;
-import ru.otus.atm.exceptions.ImpossibleAmountException;
 import ru.otus.atm.exceptions.NotSupportException;
 
 import java.util.ArrayList;
@@ -14,6 +12,16 @@ import java.util.Map;
 
 public class ATMGroup implements ATM {
     private List<ATM> atms = new ArrayList<>();
+
+    public ATMGroup(){};
+
+    public ATMGroup(List<ATM> atms){
+        this.atms.addAll(atms);
+    }
+
+    public ATMGroup(ATM atm){
+        this.atms.add(atm);
+    }
 
     @Override
     public void putMoney(List<Denominations> money) throws NotSupportException {

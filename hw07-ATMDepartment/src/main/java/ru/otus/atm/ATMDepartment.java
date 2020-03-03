@@ -12,8 +12,23 @@ import java.util.Map;
 public class ATMDepartment {
     private List<ATM> atms = new ArrayList<>();
 
+    public ATMDepartment() {
+    }
+
+    public ATMDepartment(ATM atm) {
+        addATM(atm);
+    }
+
+    public ATMDepartment(List<ATM> atms) {
+        addATM(atms);
+    }
+
     public void addATM(ATM atm) {
         atms.add(atm);
+    }
+
+    public void addATM(List<ATM> atms) {
+        this.atms.addAll(atms);
     }
 
     public boolean removeATM(ATM atm) {
@@ -48,7 +63,7 @@ public class ATMDepartment {
     public boolean restoreATMOneStep() {
         boolean result = false;
         for (ATM atm : atms) {
-            if ( restoreATMOneStep(atm) == true)
+            if (restoreATMOneStep(atm) == true)
                 result = true;
         }
         return result;

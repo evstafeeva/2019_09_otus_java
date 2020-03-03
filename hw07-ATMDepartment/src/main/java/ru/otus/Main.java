@@ -2,6 +2,7 @@ package ru.otus;
 
 
 import ru.otus.atm.ATM;
+import ru.otus.atm.ATMGroup;
 import ru.otus.atm.ATMImpl;
 import ru.otus.atm.cell.Denominations;
 import ru.otus.atm.exceptions.IllegalAmountException;
@@ -45,6 +46,8 @@ public class Main {
         System.out.println(atm.getBalance());
         System.out.println(atm.restoreATM());
         System.out.println(atm.getBalance());
-
     }
+
+
+
 }

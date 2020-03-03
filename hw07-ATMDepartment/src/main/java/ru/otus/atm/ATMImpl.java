@@ -72,10 +72,12 @@ public class ATMImpl implements ATM {
         return sum;
     }
 
+    @Override
     public Map<Denominations, Cell> getCells() {
         return cells;
     }
 
+    @Override
     public boolean restoreATM() {
         try {
             cells = originator.restoreState();

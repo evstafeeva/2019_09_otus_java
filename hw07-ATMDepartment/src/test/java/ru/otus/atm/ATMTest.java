@@ -106,7 +106,7 @@ public class ATMTest {
         ATM atm = new ATMImpl();
         atm.getMoney(-100);
     }
-    
+
     @Test
     public void undo() throws Exception {
         ATM atm = new ATMImpl(Arrays.asList(
