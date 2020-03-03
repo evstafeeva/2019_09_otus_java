@@ -1,4 +1,4 @@
-package ru.otus.atm;
+package ru.otus.atm.cell;
 
 public enum Denominations {
     FIVE_THOUSAND_RUBLES(5000),
