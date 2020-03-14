@@ -8,7 +8,7 @@
     <artifactId>2019_09_otus_java_evstafeeva</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>hw07-ATMDepartment</module>
+
     </modules>
 
     <packaging>pom</packaging>
