@@ -4,14 +4,11 @@ import javax.json.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
+
 
 public class DIYGson {
-
-    //JsonObject jsonObject;
 
     public String makeJson(Object obj) throws IllegalAccessException {
         return objToJson(obj).toString();
@@ -53,10 +50,6 @@ public class DIYGson {
             }
         }
         return jsonObjectBuilder.build();
-    }
-
-    private JsonValue stringToJson(Object obj) {
-        return Json.createValue((String)obj);
     }
 
     private JsonValue mapToJson(Object obj) throws IllegalAccessException {
