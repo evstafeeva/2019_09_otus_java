@@ -1,0 +1,17 @@
+ru\otus\sessionmanager\hibernate\HibernateUtils.class
+ru\otus\model\PhoneDataSet.class
+ru\otus\sessionmanager\DatabaseSession.class
+ru\otus\sessionmanager\SessionManager.class
+ru\otus\dao\UserDaoHibernate.class
+ru\otus\service\user\DBServiceUser.class
+ru\otus\model\AddressDataSet.class
+ru\otus\dao\Dao.class
+ru\otus\service\DbServiceException.class
+ru\otus\sessionmanager\hibernate\SessionManagerHibernate.class
+ru\otus\sessionmanager\SessionManagerException.class
+ru\otus\DataSourceH2.class
+ru\otus\model\User.class
+ru\otus\service\user\DbServiceUserImpl.class
+ru\otus\sessionmanager\hibernate\DatabaseSessionHibernate.class
+ru\otus\dao\DaoException.class
+ru\otus\DbServiceDemo.class
