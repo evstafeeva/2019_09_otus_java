@@ -5,6 +5,8 @@ import ru.otus.objects.*;
 
 import java.util.*;
 
+import static org.junit.Assert.assertEquals;
+
 public class DIYGsonTest {
 
     DIYGson diyGson = new DIYGson();
@@ -118,4 +120,22 @@ public class DIYGsonTest {
         assert long1 == long2;
     }
 
+    @Test
+    public void manyDifferentTests() throws IllegalAccessException {
+        Gson gson = new Gson();
+        DIYGson serializer = new DIYGson();
+
+        assertEquals(gson.toJson(null), serializer.makeJson(null));
+        assertEquals(gson.toJson((byte)1), serializer.makeJson((byte)1));
+        assertEquals(gson.toJson((short)1f), serializer.makeJson((short)1f));
+        assertEquals(gson.toJson(1), serializer.makeJson(1));
+        assertEquals(gson.toJson(1L), serializer.makeJson(1L));
+        assertEquals(gson.toJson(1f), serializer.makeJson(1f));
+        assertEquals(gson.toJson(1d), serializer.makeJson(1d));
+        assertEquals(gson.toJson("aaa"), serializer.makeJson("aaa"));
+        assertEquals(gson.toJson('a'), serializer.makeJson('a'));
+        assertEquals(gson.toJson(new int[] {1, 2, 3}), serializer.makeJson(new int[] {1, 2, 3}));
+        assertEquals(gson.toJson(List.of(1, 2 ,3)), serializer.makeJson(List.of(1, 2 ,3)));
+        assertEquals(gson.toJson(Collections.singletonList(1)), serializer.makeJson(Collections.singletonList(1)));
+    }
 }
