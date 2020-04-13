@@ -23,12 +23,13 @@ public class User {
     @Column(name = "age")
     private int age;
 
-    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            orphanRemoval = true)
     @JoinColumn(name = "address_id")
     private AddressDataSet address;
 
-    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "user_id")
+    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            orphanRemoval = true, mappedBy = "user")
     private List<PhoneDataSet> phones = new ArrayList<>();
 
     public User() {
