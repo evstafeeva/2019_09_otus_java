@@ -4,55 +4,74 @@ import ru.otus.annotations.*;
 
 public class ClassTest {
     @BeforeAll
-    public static void method1(){
+    public static void mBeforeAll1() {
+        System.out.println("before all 1");
     }
+
     @BeforeAll
-    public static void method2() throws Exception {
+    public static void mBeforeAll2() throws Exception {
+        System.out.println("before all 2");
         //throw new Exception("ОШИБКА");
     }
+
     @Before
-    public void method3(){
+    public void mBefore1() {
+        System.out.println("  before 1");
     }
+
     @After
-    public void method4(){
+    public void mAfter1() {
+        System.out.println("  after 1");
     }
+
     @After
-    public void method9(){
+    public void mAfter2() {
+        System.out.println("  after 2");
         //throw new NullPointerException("after 2");
     }
+
     @AfterAll
-    public static void method5() throws Exception {
+    public static void mAfterAll1() throws Exception {
+        System.out.println("after all 1");
         //throw new Exception("ОШИБКА5");
     }
+
     @AfterAll
-    public static void method51() throws Exception {
-        throw new Exception("ОШИБКА51");
+    public static void mAfterAll2() throws Exception {
+        System.out.println("after all 2");
+        //throw new Exception("ОШИБКА51");
     }
+
     @AfterAll
-    public static void method52() throws Exception {
+    public static void mAfterAll3() throws Exception {
+        System.out.println("after all 3");
         //throw new Exception("ОШИБКА52");
     }
+
     @Test
-    public void method6(){
+    public void method1() {
+        System.out.println("    method 1");
         throw new IllegalArgumentException();
     }
     @Test
-    public void method7(){
-
+    public void method2(){
+        System.out.println("    method 2");
     }
     @Test
-    public void method8(){
-
+    public void method3(){
+        System.out.println("    method 3");
     }
     @Test
-    public void method10() throws Exception {
+    public void method4() throws Exception {
+        System.out.println("    method 4");
         throw new Exception("Exception in test 10");
     }
     @Test
-    public void method11(){
-
+    public void method5(){
+        System.out.println("    method 5");
     }
     @Test
-    public void method12(){
+    public void method6(){
+        System.out.println("    method 6");
     }
 }

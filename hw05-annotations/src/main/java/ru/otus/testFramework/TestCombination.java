@@ -10,16 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 class TestCombination {
-    private ArrayList<Method> beforeMethods = new ArrayList<Method>();
+    private List<Method> beforeMethods;
     private Method testMethod;
-    private ArrayList<Method> afterMethods = new ArrayList<Method>();
+    private List<Method> afterMethods;
     private Boolean successful = true;
     private List<Exception> e = new ArrayList<Exception>();
 
-    TestCombination(TestClass testClass, Method testMethod) {
-        this.beforeMethods = testClass.getBeforeMethods();
+    TestCombination(Method testMethod, List<Method> beforeMethods, List<Method> afterMethods) {
+        this.beforeMethods = beforeMethods;
         this.testMethod = testMethod;
-        this.afterMethods = testClass.getAfterMethods();
+        this.afterMethods = afterMethods;
     }
 
     void startTest(Object instance) throws Exception {

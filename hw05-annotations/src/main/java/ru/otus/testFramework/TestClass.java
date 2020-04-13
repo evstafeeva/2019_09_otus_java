@@ -13,57 +13,40 @@ import java.util.List;
 public class TestClass {
     @Setter
     private Class<?> clazz;
-    private ArrayList<Method> beforeMethods = new ArrayList<Method>();
-    private ArrayList<Method> afterMethods = new ArrayList<Method>();
-    private ArrayList<Method> beforeAllMethods = new ArrayList<Method>();
-    private ArrayList<Method> afterAllMethods = new ArrayList<Method>();
-    private ArrayList<Method> testMethods = new ArrayList<Method>();
-    private ArrayList<TestCombination> testCombinations = new ArrayList<TestCombination>();
-    private List<Exception> beforeAllExceptions = new ArrayList<>();
-    private List<Exception> afterAllExceptions = new ArrayList<>();
+    private final List<Method> beforeAllMethods = new ArrayList<>();
+    private final List<Method> afterAllMethods = new ArrayList<>();
+    private final List<TestCombination> testCombinations = new ArrayList<>();
+    private final List<Exception> beforeAllExceptions = new ArrayList<>();
+    private final List<Exception> afterAllExceptions = new ArrayList<>();
 
-
-    void addBeforeMethod(Method method){
-        beforeMethods.add(method);
-    }
-    void addAfterMethods(Method method){
-        afterMethods.add(method);
-    }
-    void addBeforeAllMethods(Method method){
-        beforeAllMethods.add(method);
-    }
-    void addAfterAllMethods(Method method){
-        afterAllMethods.add(method);
-    }
-    void addTestMethods(Method method){
-        testMethods.add(method);
+    public TestClass(Class<?> clazz) {
+        this.clazz = clazz;
     }
 
-    void initFrom(){
+    public void makeCombinations(){
+        List<Method> beforeMethods = new ArrayList<>();
+        List<Method> afterMethods = new ArrayList<>();
+        List<Method> testMethods = new ArrayList<>();
         for(Method method : clazz.getMethods()){
             if(method.isAnnotationPresent(After.class)){
-                this.addAfterMethods(method);
+                afterMethods.add(method);
             }
             if(method.isAnnotationPresent(AfterAll.class)){
-                this.addAfterAllMethods(method);
+                afterAllMethods.add(method);
             }
             if(method.isAnnotationPresent(Before.class)){
-                this.addBeforeMethod(method);
+                beforeMethods.add(method);
             }
             if(method.isAnnotationPresent(BeforeAll.class)){
-                this.addBeforeAllMethods(method);
+                beforeAllMethods.add(method);
             }
             if(method.isAnnotationPresent(Test.class)){
-                this.addTestMethods(method);
+                testMethods.add(method);
             }
         }
-    }
-
-    void makeCombinations() {
         for(Method testMethod : testMethods){
-            TestCombination testCombination = new TestCombination(this, testMethod);
+            TestCombination testCombination = new TestCombination(testMethod, beforeMethods, afterMethods);
             testCombinations.add(testCombination);
         }
     }
-
 }
