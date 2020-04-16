@@ -14,7 +14,7 @@ public class DIYGsonTest {
 
     @Test
     public void oneTest() throws IllegalAccessException {
-        One one = new One(1);
+        One one = new One(1); //"1"  1
         String s = diyGson.makeJson(one);
         System.out.println(s);
         One one1 = gson.fromJson(s, One.class);

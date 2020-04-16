@@ -4,11 +4,30 @@ import javax.json.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
-
+import java.util.function.Function;
 
 public class DIYGson {
+
+    private static Map<Class<?>, Function<Object, JsonValue>> classesTransformers = new HashMap<>();
+    static {
+        classesTransformers.put(Integer.class, (object)->Json.createValue((Integer)object));
+        classesTransformers.put(Long.class, (object)->Json.createValue((Long)object));
+        classesTransformers.put(Byte.class, (object)->Json.createValue((Byte)object));
+        classesTransformers.put(Short.class, (object)->Json.createValue((Short)object));
+        classesTransformers.put(Double.class, (object)->Json.createValue((Double)object));
+        classesTransformers.put(Float.class, (object)->Json.createValue((Float)object));
+        classesTransformers.put(BigDecimal.class, (object)->Json.createValue((BigDecimal)object));
+        classesTransformers.put(BigInteger.class, (object)->Json.createValue((BigInteger)object));
+        classesTransformers.put(Character.class, (object)->Json.createValue(String.valueOf(object)));
+        classesTransformers.put(Boolean.class, (object)->Json.createValue(String.valueOf(object)));
+        classesTransformers.put(String.class, (object)->Json.createValue(String.valueOf(object)));
+        classesTransformers.put(Object.class, (object)->null);
+    }
 
     public String makeJson(Object obj) throws IllegalAccessException {
         return objToJson(obj).toString();
@@ -21,22 +40,21 @@ public class DIYGson {
         //получаю класс объекта
         Class<?> objClass = obj.getClass();
         //массив
-        if (objClass.isArray()) {
+        if (objClass.isArray())
             return arrayToJson(obj);
-        }
         //коллекции (set, list)
-        if (obj instanceof Collection) {
+        if (obj instanceof Collection)
             return arrayToJson(((Collection) obj).toArray());
-        }
         //мапы
-        if (obj instanceof Map) {
+        if (obj instanceof Map)
             return mapToJson(obj);
+        //функция специально для типов, от которых не унаследоваться
+
+        Function<Object, JsonValue> foundFunction = classesTransformers.get(obj.getClass());
+        if(foundFunction!= null){
+            return foundFunction.apply(obj);
         }
-        //примитивные типы
-        if (objClass.isPrimitive() || obj instanceof Character || obj instanceof Boolean
-                || obj instanceof Number || obj instanceof String) {
-            return Json.createValue(String.valueOf(obj));
-        }
+
         //другой объект
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
         Field[] fields = objClass.getDeclaredFields();
