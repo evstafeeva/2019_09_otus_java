@@ -1,0 +1,261 @@
+Serial garbage collector
+
+Starting pid: 16876@DESKTOP-88PPHEG
+GC name:Copy
+GC name:MarkSweepCompact
+start:28816 Name:Copy, action:end of minor GC, time:(32 ms)
+start:61345 Name:Copy, action:end of minor GC, time:(79 ms)
+start:95548 Name:Copy, action:end of minor GC, time:(70 ms)
+start:130313 Name:Copy, action:end of minor GC, time:(0 ms)
+start:130313 Name:MarkSweepCompact, action:end of major GC, time:(171 ms)
+start:164793 Name:Copy, action:end of minor GC, time:(0 ms)
+start:164793 Name:MarkSweepCompact, action:end of major GC, time:(210 ms)
+start:199870 Name:Copy, action:end of minor GC, time:(0 ms)
+start:199870 Name:MarkSweepCompact, action:end of major GC, time:(265 ms)
+start:230156 Name:MarkSweepCompact, action:end of major GC, time:(279 ms)
+start:245949 Name:MarkSweepCompact, action:end of major GC, time:(318 ms)
+start:254355 Name:MarkSweepCompact, action:end of major GC, time:(250 ms)
+start:254835 Name:MarkSweepCompact, action:end of major GC, time:(253 ms)
+start:255108 Name:MarkSweepCompact, action:end of major GC, time:(301 ms)
+start:259451 Name:MarkSweepCompact, action:end of major GC, time:(243 ms)
+start:259796 Name:MarkSweepCompact, action:end of major GC, time:(247 ms)
+start:260064 Name:MarkSweepCompact, action:end of major GC, time:(235 ms)
+start:260299 Name:MarkSweepCompact, action:end of major GC, time:(302 ms)
+start:262608 Name:MarkSweepCompact, action:end of major GC, time:(251 ms)
+start:262943 Name:MarkSweepCompact, action:end of major GC, time:(247 ms)
+start:263190 Name:MarkSweepCompact, action:end of major GC, time:(248 ms)
+start:263438 Name:MarkSweepCompact, action:end of major GC, time:(302 ms)
+start:264588 Name:MarkSweepCompact, action:end of major GC, time:(239 ms)
+start:264994 Name:MarkSweepCompact, action:end of major GC, time:(256 ms)
+start:265251 Name:MarkSweepCompact, action:end of major GC, time:(236 ms)
+start:265487 Name:MarkSweepCompact, action:end of major GC, time:(290 ms)
+start:266231 Name:MarkSweepCompact, action:end of major GC, time:(254 ms)
+start:266505 Name:MarkSweepCompact, action:end of major GC, time:(252 ms)
+start:266758 Name:MarkSweepCompact, action:end of major GC, time:(250 ms)
+start:267008 Name:MarkSweepCompact, action:end of major GC, time:(290 ms)
+start:267526 Name:MarkSweepCompact, action:end of major GC, time:(256 ms)
+start:267784 Name:MarkSweepCompact, action:end of major GC, time:(250 ms)
+start:268035 Name:MarkSweepCompact, action:end of major GC, time:(240 ms)
+start:268275 Name:MarkSweepCompact, action:end of major GC, time:(291 ms)
+start:268649 Name:MarkSweepCompact, action:end of major GC, time:(252 ms)
+start:268942 Name:MarkSweepCompact, action:end of major GC, time:(252 ms)
+start:269195 Name:MarkSweepCompact, action:end of major GC, time:(237 ms)
+start:269432 Name:MarkSweepCompact, action:end of major GC, time:(291 ms)
+start:269726 Name:MarkSweepCompact, action:end of major GC, time:(242 ms)
+start:269971 Name:MarkSweepCompact, action:end of major GC, time:(239 ms)
+start:270211 Name:MarkSweepCompact, action:end of major GC, time:(241 ms)
+start:270452 Name:MarkSweepCompact, action:end of major GC, time:(288 ms)
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+start:270741 Name:MarkSweepCompact, action:end of major GC, time:(246 ms)
+	at ru.otus.Benchmark.run(Benchmark.java:19)
+	at ru.otus.Main.main(Main.java:41)
+start:270988 Name:MarkSweepCompact, action:end of major GC, time:(240 ms)
+
+Process finished with exit code 1
+
+
+
+
+
+
+Parallel garbage collector
+
+Starting pid: 16740@DESKTOP-88PPHEG
+GC name:PS MarkSweep
+GC name:PS Scavenge
+start:27362 Name:PS Scavenge, action:end of minor GC, time:(18 ms)
+start:59130 Name:PS Scavenge, action:end of minor GC, time:(51 ms)
+start:91886 Name:PS Scavenge, action:end of minor GC, time:(61 ms)
+start:91947 Name:PS MarkSweep, action:end of major GC, time:(44 ms)
+start:124769 Name:PS Scavenge, action:end of minor GC, time:(22 ms)
+start:124791 Name:PS MarkSweep, action:end of major GC, time:(51 ms)
+start:157900 Name:PS MarkSweep, action:end of major GC, time:(78 ms)
+start:191269 Name:PS MarkSweep, action:end of major GC, time:(75 ms)
+start:220382 Name:PS MarkSweep, action:end of major GC, time:(94 ms)
+start:235455 Name:PS MarkSweep, action:end of major GC, time:(101 ms)
+start:243273 Name:PS MarkSweep, action:end of major GC, time:(94 ms)
+start:247422 Name:PS MarkSweep, action:end of major GC, time:(95 ms)
+start:249555 Name:PS MarkSweep, action:end of major GC, time:(84 ms)
+start:250764 Name:PS MarkSweep, action:end of major GC, time:(81 ms)
+start:251430 Name:PS MarkSweep, action:end of major GC, time:(101 ms)
+start:251783 Name:PS MarkSweep, action:end of major GC, time:(147 ms)
+start:252097 Name:PS MarkSweep, action:end of major GC, time:(151 ms)
+
+Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "main"
+
+Process finished with exit code 1
+
+
+
+
+
+
+CMS (Concurrent Mark Sweep) Garbage Collector
+
+Starting pid: 17108@DESKTOP-88PPHEG
+GC name:ParNew
+GC name:ConcurrentMarkSweep
+start:29797 Name:ParNew, action:end of minor GC, time:(24 ms)
+start:63486 Name:ParNew, action:end of minor GC, time:(53 ms)
+start:97582 Name:ParNew, action:end of minor GC, time:(55 ms)
+start:97637 Name:ConcurrentMarkSweep, action:end of major GC, time:(5114 ms)
+start:104753 Name:ConcurrentMarkSweep, action:end of major GC, time:(5100 ms)
+start:111853 Name:ConcurrentMarkSweep, action:end of major GC, time:(5141 ms)
+start:118995 Name:ConcurrentMarkSweep, action:end of major GC, time:(5127 ms)
+start:126122 Name:ConcurrentMarkSweep, action:end of major GC, time:(5144 ms)
+start:132533 Name:ParNew, action:end of minor GC, time:(61 ms)
+start:132594 Name:ConcurrentMarkSweep, action:end of major GC, time:(5092 ms)
+start:139686 Name:ConcurrentMarkSweep, action:end of major GC, time:(5099 ms)
+start:146786 Name:ConcurrentMarkSweep, action:end of major GC, time:(5158 ms)
+start:153945 Name:ConcurrentMarkSweep, action:end of major GC, time:(5110 ms)
+start:161055 Name:ConcurrentMarkSweep, action:end of major GC, time:(3117 ms)
+start:167875 Name:ParNew, action:end of minor GC, time:(54 ms)
+start:166172 Name:ConcurrentMarkSweep, action:end of major GC, time:(1776 ms)
+start:169948 Name:ConcurrentMarkSweep, action:end of major GC, time:(2238 ms)
+start:174186 Name:ConcurrentMarkSweep, action:end of major GC, time:(60 ms)
+start:176247 Name:ConcurrentMarkSweep, action:end of major GC, time:(74 ms)
+start:178322 Name:ConcurrentMarkSweep, action:end of major GC, time:(55 ms)
+start:180378 Name:ConcurrentMarkSweep, action:end of major GC, time:(81 ms)
+start:182460 Name:ConcurrentMarkSweep, action:end of major GC, time:(73 ms)
+start:184533 Name:ConcurrentMarkSweep, action:end of major GC, time:(79 ms)
+start:186613 Name:ConcurrentMarkSweep, action:end of major GC, time:(57 ms)
+start:188670 Name:ConcurrentMarkSweep, action:end of major GC, time:(79 ms)
+start:190749 Name:ConcurrentMarkSweep, action:end of major GC, time:(67 ms)
+start:192816 Name:ConcurrentMarkSweep, action:end of major GC, time:(66 ms)
+start:194882 Name:ConcurrentMarkSweep, action:end of major GC, time:(65 ms)
+start:196947 Name:ConcurrentMarkSweep, action:end of major GC, time:(82 ms)
+start:199030 Name:ConcurrentMarkSweep, action:end of major GC, time:(61 ms)
+start:201092 Name:ConcurrentMarkSweep, action:end of major GC, time:(62 ms)
+start:203154 Name:ConcurrentMarkSweep, action:end of major GC, time:(83 ms)
+start:203292 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:203292 Name:ConcurrentMarkSweep, action:end of major GC, time:(248 ms)
+start:203540 Name:ConcurrentMarkSweep, action:end of major GC, time:(159 ms)
+start:205700 Name:ConcurrentMarkSweep, action:end of major GC, time:(130 ms)
+start:207830 Name:ConcurrentMarkSweep, action:end of major GC, time:(120 ms)
+start:209950 Name:ConcurrentMarkSweep, action:end of major GC, time:(98 ms)
+start:212048 Name:ConcurrentMarkSweep, action:end of major GC, time:(107 ms)
+start:214156 Name:ConcurrentMarkSweep, action:end of major GC, time:(128 ms)
+start:216285 Name:ConcurrentMarkSweep, action:end of major GC, time:(116 ms)
+start:218401 Name:ConcurrentMarkSweep, action:end of major GC, time:(105 ms)
+start:220505 Name:ConcurrentMarkSweep, action:end of major GC, time:(96 ms)
+start:222601 Name:ConcurrentMarkSweep, action:end of major GC, time:(122 ms)
+start:224723 Name:ConcurrentMarkSweep, action:end of major GC, time:(121 ms)
+start:226844 Name:ConcurrentMarkSweep, action:end of major GC, time:(102 ms)
+start:228947 Name:ConcurrentMarkSweep, action:end of major GC, time:(104 ms)
+start:231051 Name:ConcurrentMarkSweep, action:end of major GC, time:(95 ms)
+start:233145 Name:ConcurrentMarkSweep, action:end of major GC, time:(112 ms)
+start:233888 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:233888 Name:ConcurrentMarkSweep, action:end of major GC, time:(277 ms)
+start:234165 Name:ConcurrentMarkSweep, action:end of major GC, time:(230 ms)
+start:236395 Name:ConcurrentMarkSweep, action:end of major GC, time:(161 ms)
+start:238557 Name:ConcurrentMarkSweep, action:end of major GC, time:(183 ms)
+start:240740 Name:ConcurrentMarkSweep, action:end of major GC, time:(179 ms)
+start:242919 Name:ConcurrentMarkSweep, action:end of major GC, time:(160 ms)
+start:245080 Name:ConcurrentMarkSweep, action:end of major GC, time:(161 ms)
+start:247241 Name:ConcurrentMarkSweep, action:end of major GC, time:(158 ms)
+start:249400 Name:ConcurrentMarkSweep, action:end of major GC, time:(171 ms)
+start:250291 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:250291 Name:ConcurrentMarkSweep, action:end of major GC, time:(289 ms)
+start:250580 Name:ConcurrentMarkSweep, action:end of major GC, time:(259 ms)
+start:252839 Name:ConcurrentMarkSweep, action:end of major GC, time:(197 ms)
+start:255037 Name:ConcurrentMarkSweep, action:end of major GC, time:(194 ms)
+start:257232 Name:ConcurrentMarkSweep, action:end of major GC, time:(219 ms)
+start:259045 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:259045 Name:ConcurrentMarkSweep, action:end of major GC, time:(293 ms)
+start:259338 Name:ConcurrentMarkSweep, action:end of major GC, time:(269 ms)
+start:261608 Name:ConcurrentMarkSweep, action:end of major GC, time:(215 ms)
+start:263795 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:263795 Name:ConcurrentMarkSweep, action:end of major GC, time:(315 ms)
+start:264110 Name:ConcurrentMarkSweep, action:end of major GC, time:(281 ms)
+start:266374 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:266374 Name:ConcurrentMarkSweep, action:end of major GC, time:(295 ms)
+start:266669 Name:ConcurrentMarkSweep, action:end of major GC, time:(277 ms)
+start:267891 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:267891 Name:ConcurrentMarkSweep, action:end of major GC, time:(306 ms)
+start:268197 Name:ConcurrentMarkSweep, action:end of major GC, time:(276 ms)
+start:268874 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:268874 Name:ConcurrentMarkSweep, action:end of major GC, time:(304 ms)
+start:269178 Name:ConcurrentMarkSweep, action:end of major GC, time:(280 ms)
+start:269609 Name:ParNew, action:end of minor GC, time:(0 ms)
+start:269609 Name:ConcurrentMarkSweep, action:end of major GC, time:(285 ms)
+start:270163 Name:ConcurrentMarkSweep, action:end of major GC, time:(15 ms)
+start:0 Name:ConcurrentMarkSweep, action:end of major GC, time:(0 ms)
+start:270568 Name:ConcurrentMarkSweep, action:end of major GC, time:(299 ms)
+start:270965 Name:ConcurrentMarkSweep, action:end of major GC, time:(308 ms)
+start:271315 Name:ConcurrentMarkSweep, action:end of major GC, time:(285 ms)
+start:271699 Name:ConcurrentMarkSweep, action:end of major GC, time:(319 ms)
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at ru.otus.Benchmark.run(Benchmark.java:19)
+	at ru.otus.Main.main(Main.java:41)
+start:272384 Name:ConcurrentMarkSweep, action:end of major GC, time:(324 ms)
+start:272708 Name:ConcurrentMarkSweep, action:end of major GC, time:(282 ms)
+
+Process finished with exit code 1
+
+
+
+
+
+
+G1 (Garbage First) Garbage Collector
+
+Starting pid: 14676@DESKTOP-88PPHEG
+GC name:G1 Young Generation
+GC name:G1 Old Generation
+start:3957 Name:G1 Young Generation, action:end of minor GC, time:(6 ms)
+start:9380 Name:G1 Young Generation, action:end of minor GC, time:(5 ms)
+start:29339 Name:G1 Young Generation, action:end of minor GC, time:(26 ms)
+start:39291 Name:G1 Young Generation, action:end of minor GC, time:(20 ms)
+start:50637 Name:G1 Young Generation, action:end of minor GC, time:(24 ms)
+start:64817 Name:G1 Young Generation, action:end of minor GC, time:(22 ms)
+start:83500 Name:G1 Young Generation, action:end of minor GC, time:(30 ms)
+start:97662 Name:G1 Young Generation, action:end of minor GC, time:(26 ms)
+start:107506 Name:G1 Young Generation, action:end of minor GC, time:(7 ms)
+start:125155 Name:G1 Young Generation, action:end of minor GC, time:(14 ms)
+start:137408 Name:G1 Young Generation, action:end of minor GC, time:(8 ms)
+start:149649 Name:G1 Young Generation, action:end of minor GC, time:(22 ms)
+start:158247 Name:G1 Young Generation, action:end of minor GC, time:(10 ms)
+start:163436 Name:G1 Young Generation, action:end of minor GC, time:(12 ms)
+start:171227 Name:G1 Young Generation, action:end of minor GC, time:(8 ms)
+start:176408 Name:G1 Young Generation, action:end of minor GC, time:(9 ms)
+start:181849 Name:G1 Young Generation, action:end of minor GC, time:(10 ms)
+start:187269 Name:G1 Young Generation, action:end of minor GC, time:(7 ms)
+start:192729 Name:G1 Young Generation, action:end of minor GC, time:(4 ms)
+start:198143 Name:G1 Young Generation, action:end of minor GC, time:(10 ms)
+start:203595 Name:G1 Young Generation, action:end of minor GC, time:(4 ms)
+start:209023 Name:G1 Young Generation, action:end of minor GC, time:(11 ms)
+start:214493 Name:G1 Young Generation, action:end of minor GC, time:(10 ms)
+start:219908 Name:G1 Young Generation, action:end of minor GC, time:(9 ms)
+start:225304 Name:G1 Young Generation, action:end of minor GC, time:(4 ms)
+start:230757 Name:G1 Young Generation, action:end of minor GC, time:(7 ms)
+start:234637 Name:G1 Young Generation, action:end of minor GC, time:(17 ms)
+start:234904 Name:G1 Young Generation, action:end of minor GC, time:(1 ms)
+start:234905 Name:G1 Old Generation, action:end of major GC, time:(145 ms)
+start:241385 Name:G1 Young Generation, action:end of minor GC, time:(8 ms)
+start:246843 Name:G1 Young Generation, action:end of minor GC, time:(10 ms)
+start:252270 Name:G1 Young Generation, action:end of minor GC, time:(4 ms)
+start:254065 Name:G1 Young Generation, action:end of minor GC, time:(2 ms)
+start:254067 Name:G1 Old Generation, action:end of major GC, time:(149 ms)
+start:260705 Name:G1 Young Generation, action:end of minor GC, time:(10 ms)
+start:262533 Name:G1 Young Generation, action:end of minor GC, time:(3 ms)
+start:262536 Name:G1 Old Generation, action:end of major GC, time:(153 ms)
+start:266984 Name:G1 Young Generation, action:end of minor GC, time:(6 ms)
+start:266990 Name:G1 Old Generation, action:end of major GC, time:(162 ms)
+start:269570 Name:G1 Young Generation, action:end of minor GC, time:(2 ms)
+start:269572 Name:G1 Old Generation, action:end of major GC, time:(131 ms)
+start:271223 Name:G1 Young Generation, action:end of minor GC, time:(2 ms)
+start:271225 Name:G1 Old Generation, action:end of major GC, time:(150 ms)
+start:271875 Name:G1 Young Generation, action:end of minor GC, time:(3 ms)
+start:271878 Name:G1 Old Generation, action:end of major GC, time:(154 ms)
+start:272789 Name:G1 Young Generation, action:end of minor GC, time:(1 ms)
+start:272790 Name:G1 Old Generation, action:end of major GC, time:(122 ms)
+start:273912 Name:G1 Young Generation, action:end of minor GC, time:(3 ms)
+start:273915 Name:G1 Old Generation, action:end of major GC, time:(153 ms)
+start:274422 Name:G1 Young Generation, action:end of minor GC, time:(1 ms)
+start:274423 Name:G1 Old Generation, action:end of major GC, time:(128 ms)
+start:274792 Name:G1 Young Generation, action:end of minor GC, time:(2 ms)
+start:274794 Name:G1 Old Generation, action:end of major GC, time:(152 ms)
+
+Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "main"
+
+Process finished with exit code 1
