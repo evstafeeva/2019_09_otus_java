@@ -1,4 +1,4 @@
-Домашнее задание
+#### Домашнее задание
 DIY ArrayList
 Написать свою реализацию ArrayList на основе массива.
 class DIYarrayList<T> implements List<T>{...}
