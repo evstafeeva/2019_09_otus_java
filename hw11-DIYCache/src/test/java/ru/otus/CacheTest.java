@@ -2,7 +2,7 @@ package ru.otus;
 
 
 import org.hibernate.SessionFactory;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.otus.hibernate.dao.UserDaoHibernate;
@@ -21,18 +21,27 @@ import java.util.Optional;
 
 public class CacheTest {
 
+    private SessionFactory sessionFactory;
+    private SessionManagerHibernate sessionManager;
+    private UserDaoHibernate userDao;
     private DBServiceUser dbServiceUser;
 
     @BeforeEach
     public void settings() {
-        SessionFactory sessionFactory = HibernateUtils.buildSessionFactory("hibernate.cfg.xml",
-                User.class,
+        sessionFactory = HibernateUtils.buildSessionFactory("hibernate-test.cfg.xml",
                 PhoneDataSet.class,
-                AddressDataSet.class);
+                AddressDataSet.class,
+                User.class);
 
-        SessionManagerHibernate sessionManager = new SessionManagerHibernate(sessionFactory);
-        UserDaoHibernate userDao = new UserDaoHibernate(sessionManager);
+        sessionManager = new SessionManagerHibernate(sessionFactory);
+        userDao = new UserDaoHibernate(sessionManager);
         dbServiceUser = new DbServiceUserImpl(userDao);
+    }
+
+    @AfterEach
+    public void clear() {
+        sessionManager.close();
+        sessionFactory.close();
     }
 
     @Test

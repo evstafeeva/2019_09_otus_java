@@ -15,13 +15,13 @@ import java.util.Optional;
 public class DbServiceUserImpl implements DBServiceUser {
     private static Logger logger = LoggerFactory.getLogger(DbServiceUserImpl.class);
     private final UserDaoHibernate userDao;
-    private final HwCache<Long, User> cache = new MyCache<>();
+    private final HwCache<String, User> cache = new MyCache<>();
 
     public DbServiceUserImpl(UserDaoHibernate userDao) {
         this.userDao = userDao;
-        cache.addListener(new HwListener<Long, User>() {
+        cache.addListener(new HwListener<String, User>() {
             @Override
-            public void notify(Long key, User value, String action) {
+            public void notify(String key, User value, String action) {
                 logger.info("FROM CACHE: key:{"+key+"}, value:{"+value+"}, action: {"+action+"}");
             }
         });
@@ -35,7 +35,7 @@ public class DbServiceUserImpl implements DBServiceUser {
                 long userId = userDao.save(user);
                 sessionManager.commitSession();
                 //сохраняем в кэш
-                cache.put(userId, user);
+                cache.put(String.valueOf(userId), user);
                 logger.info("created user: {}", userId);
                 return userId;
             } catch (Exception e) {
@@ -54,7 +54,7 @@ public class DbServiceUserImpl implements DBServiceUser {
                 long userId = userDao.update(user);
                 sessionManager.commitSession();
                 //обновляем в кэше
-                cache.put(userId, user);
+                cache.put(String.valueOf(userId), user);
                 logger.info("update user: {}", userId);
                 return userId;
             } catch (Exception e) {
@@ -68,13 +68,14 @@ public class DbServiceUserImpl implements DBServiceUser {
 
     @Override
     public Optional<User> getUser(long id) {
-        Optional<User> user = Optional.ofNullable(cache.get(id));
+        Optional<User> user = Optional.ofNullable(cache.get(String.valueOf(id)));
         if(!user.isEmpty())
             return user;
         try (SessionManager sessionManager = userDao.getSessionManager()) {
             sessionManager.beginSession();
             try {
                 Optional<User> userOptional = userDao.findById(id, User.class);
+                cache.put(String.valueOf(id), userOptional.get());
                 logger.info("user: {}", userOptional.orElse(null));
                 return userOptional;
             } catch (Exception e) {
