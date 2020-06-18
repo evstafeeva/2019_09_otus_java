@@ -1,7 +1,9 @@
 package ru.otus;
 
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,11 +15,11 @@ import ru.otus.hibernate.service.user.DBServiceUser;
 import ru.otus.hibernate.service.user.DbServiceUserImpl;
 import ru.otus.hibernate.sessionmanager.HibernateUtils;
 import ru.otus.hibernate.sessionmanager.SessionManagerHibernate;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 
 public class CacheTest {
 
@@ -40,8 +42,13 @@ public class CacheTest {
 
     @AfterEach
     public void clear() {
-        sessionManager.close();
-        sessionFactory.close();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.createSQLQuery("DROP TABLE IF EXISTS users_phones").executeUpdate();
+        session.createSQLQuery("DROP TABLE IF EXISTS phones").executeUpdate();
+        session.createSQLQuery("DROP TABLE IF EXISTS users").executeUpdate();
+        session.createSQLQuery("DROP TABLE IF EXISTS addresses").executeUpdate();
+        transaction.commit();
     }
 
     @Test
