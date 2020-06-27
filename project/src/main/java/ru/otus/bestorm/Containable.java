@@ -1,4 +1,4 @@
-package bestorm;
+package ru.otus.bestorm;
 
 import java.sql.SQLException;
 import java.util.function.Consumer;
@@ -8,12 +8,13 @@ import java.util.function.Consumer;
  * 
  * @param <T> Тип данных, который мапится в отношение
  */
-public interface Containable<T extends Identifiable> {
+public interface Containable<T> {
 
   /**
    * Изменить строку соответствующую данному объекту в зависимости от текущего состояния объекта
    * 
-   * @return <tt>true</tt> в случае успеха, иначе <tt>false</tt>
+   * @return <tt>true</tt> если строка была изменена, <tt>false</tt> если осталась в прежнем
+   *         состоянии
    * @throws IllegalStateException Если объект удалён
    * @throws SQLException
    */
@@ -24,8 +25,9 @@ public interface Containable<T extends Identifiable> {
    * модификация выполнится сразу после вызова данного метода
    * 
    * @param modifier модификатор
-   * @return Очевидно
-   * @throws IllegalStateException 
+   * @return <tt>true</tt> если строка была изменена, <tt>false</tt> если осталась в прежнем
+   *         состоянии
+   * @throws IllegalStateException
    * @throws SQLException
    */
   public boolean update(Consumer<T> modifier) throws IllegalStateException, SQLException;

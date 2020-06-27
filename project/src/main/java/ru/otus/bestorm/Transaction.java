@@ -1,4 +1,4 @@
-package bestorm;
+package ru.otus.bestorm;
 
 /**
  * Всё то же что и с ContainableObjectFactory но действия выполняются в транзации
@@ -10,7 +10,7 @@ public interface Transaction {
    * @param <T> 
    * @return
    */
-  public <T extends Identifiable> ContainableObjectFactory<T> getFactory();
+  public <T> ContainableObjectFactory<T> getFactory();
 
   /**
    * Выполнить транзакцию

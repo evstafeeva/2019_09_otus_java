@@ -1,8 +1,6 @@
-package bestorm.filters;
+package ru.otus.bestorm.filters;
 
-import bestorm.Identifiable;
-
-public interface ValueFilter<T extends Identifiable> {
+public interface ValueFilter<T> {
   /**
    * сравнение по полям
    *  = генерить выражения (id = ?)

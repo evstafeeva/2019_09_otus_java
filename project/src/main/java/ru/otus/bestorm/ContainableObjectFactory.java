@@ -1,14 +1,14 @@
-package bestorm;
+package ru.otus.bestorm;
 
 import java.sql.SQLException;
-import bestorm.filters.ValueFilter;
+import ru.otus.bestorm.filters.ValueFilter;
 
 /**
  * Служит для получения объектов из БД
  * 
  * @param <T> тип объектов которые мапятся в отношения
  */
-public interface ContainableObjectFactory<T extends Identifiable> {
+public interface ContainableObjectFactory<T> {
 
   /**
    * Создать запись в таблице и получить экземпляр Containable
