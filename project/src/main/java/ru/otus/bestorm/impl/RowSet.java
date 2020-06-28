@@ -1,15 +1,16 @@
 package ru.otus.bestorm.impl;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.function.Consumer;
 import ru.otus.bestorm.Containable;
 import ru.otus.bestorm.ContainableCollection;
 import ru.otus.bestorm.impl.exceptions.WrongTableException;
 import ru.otus.bestorm.impl.util.Destructable;
 import ru.otus.bestorm.impl.util.RunnableWrapper;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class RowSet<T> extends Destructable
     implements ContainableCollection<T> {

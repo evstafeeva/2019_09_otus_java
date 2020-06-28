@@ -1,7 +1,8 @@
 package ru.otus.bestorm;
 
-import java.sql.SQLException;
 import ru.otus.bestorm.filters.ValueFilter;
+
+import java.sql.SQLException;
 
 /**
  * Служит для получения объектов из БД

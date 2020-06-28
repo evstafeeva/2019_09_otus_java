@@ -1,83 +1,130 @@
 package ru.otus.bestorm.impl;
 
+import ru.otus.bestorm.*;
+import ru.otus.bestorm.filters.ValueFilter;
+
 import java.lang.reflect.Field;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Statement;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import ru.otus.bestorm.Containable;
-import ru.otus.bestorm.ContainableCollection;
-import ru.otus.bestorm.ContainableObjectFactory;
-import ru.otus.bestorm.Registrar;
-import ru.otus.bestorm.filters.ValueFilter;
 
 public class Table<T> implements ContainableObjectFactory<T> {
 
-  public class TableField {
+    private static final String SURROGATE_KEY_NAME = "ID";
+
+
+    public class TableField {
+        private final String name;
+        private final FieldType type;
+        private final Table<?>.TableField referent;
+
+        public Table<T> getTable() {
+            return Table.this;
+        }
+
+        public Table<?>.TableField getReferent() {
+            return referent;
+        }
+
+        public FieldType getType() {
+            return type;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * Для обычного поля
+         *
+         * @param field
+         */
+        public TableField(Field field) throws SQLException {
+            this.name = field.getName() + "_";
+            FieldType type = FieldType.typeOf(field.getType());
+            if (null != type) {
+                this.referent = null;
+                this.type = type;
+            } else {
+                this.type = FieldType.INTEGER;
+                Table<?> table = registrar.getTable(field.getType());
+                this.referent = table.primaryKey;
+            }
+        }
+
+        /**
+         * Для суррогатного ключа
+         *
+         * @param name название
+         * @param type тип
+         */
+        public TableField(String name, FieldType type) {
+            this.name = name;
+            this.type = type;
+            this.referent = null;
+        }
+    }
+
+    private final Class<T> classObject;
+    private final Registrar registrar;
+    private final Map<Field, TableField> declaredFields = new HashMap<>();
+    private final TableField primaryKey;
     private final String name;
-    private final FieldType type;
-    private final TableField referent;
 
-    public Table<T> getTable() {
-      return Table.this;
-    }
-
-    public TableField getReferent() {
-      return referent;
-    }
-
-    public FieldType getType() {
-      return type;
+    public TableField getPrimaryKey() {
+        return primaryKey;
     }
 
     public String getName() {
-      return name;
+        return name;
     }
 
-    public TableField(Field field) {
-      // TODO add some reflection and foreign-key stuff
-      name = null;
-      type = null;
-      referent = null;
+    public Map<Field, TableField> getDeclaredFields() {
+        return declaredFields;
     }
 
-    public TableField(String name, FieldType type) {
-      this.name = name;
-      this.type = type;
-      this.referent = null;
+    public Collection<TableField> getFields(){
+        return  declaredFields.values();
     }
-  }
 
-  private final Class<T> classObject; 
-  private final Registrar registrar; 
-  private final Map<Field, TableField> declaredFields = new HashMap<>();
-  private final ArrayList<TableField> primaryKeys = new ArrayList<>();
-  
-  @Override
-  public Containable<T> get() throws SQLException {
-    // TODO create prepared statement and return Row<T> (statement.getResultSet, this)
-    return null;
-  }
-
-  @Override
-  public Containable<T> get(ValueFilter<T> filter) throws SQLException {
-    // TODO create prepared statement and return Row<T> (statement.getResultSet, this)
-    return null;
-  }
-
-  @Override
-  public ContainableCollection<T> select(ValueFilter<T> filter) throws SQLException {
-    // TODO create prepared statement and return RowSet<T> (statement, this)
-    return null;
-  }
-
-  public Table(Registrar registrar, Class<T> classObject) {
-    this.registrar = registrar;
-    this.classObject = classObject;
-    for (Field field : classObject.getDeclaredFields()){
-      this.declaredFields.put(field, new TableField(field));
+    @Override
+    public Containable<T> get() throws SQLException {
+        // TODO create prepared statement and return Row<T> (statement.getResultSet, this)
+        return null;
     }
-    // TODO fill fields (some reflection stuff) (c)Alena
-  }
+
+    @Override
+    public Containable<T> get(ValueFilter<T> filter) throws SQLException {
+        // TODO create prepared statement and return Row<T> (statement.getResultSet, this)
+        return null;
+    }
+
+    @Override
+    public ContainableCollection<T> select(ValueFilter<T> filter) throws SQLException {
+        // TODO create prepared statement and return RowSet<T> (statement, this)
+        return null;
+    }
+
+    public Table(Registrar registrar, Class<T> classObject) throws SQLException {
+        this.registrar = registrar;
+        this.classObject = classObject;
+        this.name = classObject.getName().replaceAll("\\.", "_");
+        primaryKey = new TableField(SURROGATE_KEY_NAME, FieldType.INTEGER);
+        for(Field field: classObject.getDeclaredFields()){
+            if(null == FieldType.typeOf(field.getType()))
+                registrar.register(field.getType());
+        }
+        String sqlQuery = createTableQuery();
+        Statement statement = registrar.getConnection().createStatement();
+        statement.execute(sqlQuery);
+        statement.close();
+    }
+
+    private String createTableQuery() {
+        return "CREATE TABLE `" + name + "` ( `" + primaryKey.name + "` "
+                + primaryKey.type + " PRIMARY KEY AUTO_INCREMENT);";
+    }
 
 }
