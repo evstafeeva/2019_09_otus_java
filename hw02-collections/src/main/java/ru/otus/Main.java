@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
         List<Integer> array = new DIYarrayList<>();
         array.addAll(Arrays.asList(1,2,3,4,5,6,7,8,9,12,13,14,15,16,17,78,89,90,100));
         System.out.println("Исходный список: " + Arrays.toString(array.toArray()));
